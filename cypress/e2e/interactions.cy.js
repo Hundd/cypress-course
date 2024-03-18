@@ -62,7 +62,7 @@ describe("Basic page interactions", () => {
     it("should set env", () => {
       Cypress.env("MY_ENV_VARIABLE", "hello world");
       const myVar = Cypress.env("MY_ENV_VARIABLE");
-      expect(myVar).to.equal("hello world");
+      expect(myVar).equal("hello world").and.not.equal("hello");
     });
   });
 });
