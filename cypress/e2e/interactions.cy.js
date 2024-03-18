@@ -41,12 +41,28 @@ describe("Basic page interactions", () => {
     });
 
     it("should have length 3", () => {
-      cy.get('[data-cy="box-4-items-list"] > li').should("have.length", 3);
+      cy.get('[data-cy="box-4-items-list"]')
+        .children()
+        .should("have.length", 3);
     });
 
-    it('should exist', () => {
-        cy.get('[data-cy="box-4-items-list"]').should("exist");
-        cy.get('[data-cy="box-4-items-list"]').should("be.visible");
+    it("should exist", () => {
+      cy.get('[data-cy="box-4-items-list"]').should("exist");
+      cy.get('[data-cy="box-4-items-list"]').should("be.visible");
+    });
+    it("debug", () => {
+      cy.get('[data-cy="box-4-items-list"]').should("exist");
+      //.debug();
+    });
+    it("should get env", () => {
+      const myVar = Cypress.env("MY_ENV_VARIABLE");
+      expect(myVar).to.equal("hello");
+    });
+
+    it("should set env", () => {
+      Cypress.env("MY_ENV_VARIABLE", "hello world");
+      const myVar = Cypress.env("MY_ENV_VARIABLE");
+      expect(myVar).to.equal("hello world");
     });
   });
 });
